@@ -16,7 +16,7 @@ exports.searchinstance_submit = function(req, res, next) {
             res.redirect('/books/');
         }else{
             console.log(req.query.q + ' returned ' + data.length + " results");
-            res.render('books', {layout: 'default', results: data});
+            res.render('books', {layout: 'search', results: data});
         }
     });
 };
