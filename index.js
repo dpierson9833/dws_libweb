@@ -1,20 +1,40 @@
+/*
+    TODO: 
+    -book check-in and check-out
+    -late check
+    -book search
+    -search by critera
+    -rental/user history
+*/
+
 const express = require('express');
 const path = require('path');
+const hbs = require('express-handlebars');
 const logger = require('./middleware/logger');
+const dbconnect = require('./middleware/dbconnect');
 
+//init express app
 const app = express();
 
-//init middleware
-//app.use(logger);
+//init templating
+app.set('view engine', 'hbs');
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './htdocs/index.html'));
-});
+app.engine('hbs', hbs({
+    extname: 'hbs',
+    defaultView: 'default',
+    layoutsDir: __dirname + '/views/layouts/',
+    partialsDir: __dirname + '/views/partials/'
+}));
+
+//init middleware
+app.use(logger);
+app.use('/books', dbconnect);
 
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('route', require('./routes/example'));
+//set routing module
+app.use('/', require('./routes/router.js'));
 
 const PORT = process.env.PORT || 8000;
 
