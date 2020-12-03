@@ -1,24 +1,20 @@
 const express = require('express');
 const mysql = require('mysql');
 
-const dbconnect = (req, res, next) => {
-    var database = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'library_information'
-    });
-    
-    database.connect(function (error) {
-        if(error){
-    
-        }
-        else{
-            console.log("connected");
-        }
-    });
+var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'library_information'
+});
 
-    next();
-};
+connection.connect(function (error) {
+    if (error) {
 
-module.exports = dbconnect;
+    }
+    else {
+        console.log("connected");
+    }
+});
+
+module.exports = connection;

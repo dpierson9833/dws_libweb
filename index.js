@@ -28,7 +28,6 @@ app.engine('hbs', hbs({
 
 //init middleware
 app.use(logger);
-app.use('/books', dbconnect);
 
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));

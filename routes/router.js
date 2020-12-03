@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/books', (req, res) => {
-    res.render('books', {layout: 'default', template: 'books-template'});
+    res.render('books', {layout: 'default'});
 });
 
 router.get('/search/', search_con.searchinstance_submit);

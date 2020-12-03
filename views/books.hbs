@@ -4,3 +4,22 @@
         <input type="submit" value="Query">
     </form>
 </div>
+
+<div>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>author</th>
+            <th>ISBN</th>
+            <th>Availability</th>
+        </tr>
+        {{#each results}}
+        <tr>
+            <td>{{this.title}}</td>
+            <td>{{this.author}}</td>
+            <td>{{this.ISBN}}</td>
+            <td>{{this.book_status}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
