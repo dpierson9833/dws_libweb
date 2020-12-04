@@ -12,6 +12,7 @@ const dbconnect = require('./middleware/dbconnect');
 const auth = require('./middleware/auth');
 const get_username = require('./middleware/get_user');
 const get_checkedbooks = require('./middleware/get_checkedbooks');
+const ignore_favicon = require('./middleware/ignore_favicon');
 const session = require('express-session');
 //const { options } = require('./routes/router');
 
@@ -36,6 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 //init middleware
+app.use(ignore_favicon);
 app.use(logger);
 app.use(auth);
 app.use('/user/', get_username);

@@ -22,9 +22,15 @@ exports.postinstance_availability = function (req, res, next) {
 exports.postinstance_login = function (req, res, next) { //not safe for production, dev use only
     var user = req.body.user;
     var pass = req.body.pass;
-    var sql = "SELECT username, pass FROM administrators";
+    var sql = "SELECT username, pass, aid FROM administrators WHERE username = ? AND pass = ?";
     
-    
-    //either reload or create session cookie
-    next();
+    db.query(sql, [user, pass], function (err, data, fields) {
+        if (err) {
+            console.log(err.sqlMessage);
+        }else{
+            //create session
+            req.session.user = data[0].aid;
+            res.redirect(`/user/?id=${req.session.user}`); //redirect to user admin page
+        }
+    });
 };
