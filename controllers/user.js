@@ -9,14 +9,13 @@ exports.getinstance_user = function (req, res, next) {
 };
 
 exports.postinstance_availability = function (req, res, next) {
-    var user = 1000 //PLACEHOLDER UNTIL AUTH IS DONE
-    var ISBN = req.params.id;
+    var ISBN = req.body.btn_available;
 
     console.log(ISBN);
     //get ISBN
     //change availability
 
-    res.redirect(`/user/?id=${user}`);    
+    res.redirect(`/user/?id=${req.session.user}`);    
 };
 
 exports.postinstance_login = function (req, res, next) { //not safe for production, dev use only

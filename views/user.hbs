@@ -14,9 +14,36 @@
             <td>{{this.ISBN}}</td>
             <td>{{this.book_status}}</td>
             <td><form action="/availability" method="POST">
-                <input type="submit" id="{{this.ISBN}}" name="button" value="Change Availability">
+                <button name="btn_available" type="submit" value="{{this.ISBN}}">Change Availability</button>
             </form></td>
         </tr>
         {{/each}}
     </table>
+
+    <table>
+        <tr>
+            <th>Eagle ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        {{#each banned_user}}
+        <tr>
+            <td>{{this.eid}}</td>
+            <td>{{this.fname}}</td>
+            <td>{{this.lname}}</td>
+            <td><form action="/unban" method="POST">
+                <button name="btn_unban" type="submit" value="{{this.eid}}">Remove Ban</button>
+            </form></td>
+        </tr>
+        {{/each}}
+    </table>
+
+    
+    <form name="banned_list" method="POST">
+        <label>Create New Banned User</label><br>
+        <input type="text" name='eid' placeholder="Eagle ID"><br>
+        <input type="text" name="fname" placeholder="First Name">
+        <input type="text" name="lname" placeholder="Last Name"><br>
+        <input type="submit" name="submit" value="submit">
+    </form>
 </div>
