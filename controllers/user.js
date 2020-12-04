@@ -19,8 +19,12 @@ exports.postinstance_availability = function (req, res, next) {
     res.redirect(`/user/?id=${user}`);    
 };
 
-exports.postinstance_login = function (req, res, next) {
-    //get post data
-    //veerify
+exports.postinstance_login = function (req, res, next) { //not safe for production, dev use only
+    var user = req.body.user;
+    var pass = req.body.pass;
+    var sql = "SELECT username, pass FROM administrators";
+    
+    
     //either reload or create session cookie
+    next();
 };

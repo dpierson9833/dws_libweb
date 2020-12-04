@@ -6,6 +6,7 @@
 const express = require('express');
 const path = require('path');
 const hbs = require('express-handlebars');
+const bodyParser = require('body-parser');
 const logger = require('./middleware/logger');
 const dbconnect = require('./middleware/dbconnect');
 const auth = require('./middleware/auth');
@@ -29,6 +30,10 @@ app.engine('hbs', hbs({
 
 //init session
 app.use(session({secret: "SDJdjaksSAD"}));
+
+//init body-parser
+app.use(express.json());
+app.use(express.urlencoded());
 
 //init middleware
 app.use(logger);
