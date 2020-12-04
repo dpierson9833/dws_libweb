@@ -8,8 +8,10 @@ const path = require('path');
 const hbs = require('express-handlebars');
 const logger = require('./middleware/logger');
 const dbconnect = require('./middleware/dbconnect');
+const auth = require('./middleware/auth');
 const get_username = require('./middleware/get_user');
 const get_checkedbooks = require('./middleware/get_checkedbooks');
+const session = require('express-session');
 //const { options } = require('./routes/router');
 
 //init express app
@@ -25,12 +27,14 @@ app.engine('hbs', hbs({
     partialsDir: __dirname + '/views/partials/'
 }));
 
+//init session
+app.use(session({secret: "SDJdjaksSAD"}));
+
 //init middleware
 app.use(logger);
-//innit auth
+app.use(auth);
 app.use('/user/', get_username);
 app.use('/user/', get_checkedbooks);
-//init get students
 //display data
 
 //set static folder

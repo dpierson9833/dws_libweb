@@ -13,7 +13,9 @@
             <td>{{this.title}}</td>
             <td>{{this.ISBN}}</td>
             <td>{{this.book_status}}</td>
-            
+            <td><form action="/availability" method="POST">
+                <input type="submit" id="{{this.ISBN}}" name="button" value="Change Availability">
+            </form></td>
         </tr>
         {{/each}}
     </table>
