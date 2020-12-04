@@ -1,10 +1,6 @@
 /*
     TODO: 
-    -book check-in and check-out
-    -late check
-    -book search
-    -search by critera
-    -rental/user history
+        -show genres of books on home page
 */
 
 const express = require('express');
@@ -12,6 +8,9 @@ const path = require('path');
 const hbs = require('express-handlebars');
 const logger = require('./middleware/logger');
 const dbconnect = require('./middleware/dbconnect');
+const get_username = require('./middleware/get_user');
+const get_checkedbooks = require('./middleware/get_checkedbooks');
+//const { options } = require('./routes/router');
 
 //init express app
 const app = express();
@@ -28,6 +27,11 @@ app.engine('hbs', hbs({
 
 //init middleware
 app.use(logger);
+//innit auth
+app.use('/user/', get_username);
+app.use('/user/', get_checkedbooks);
+//init get students
+//display data
 
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));
