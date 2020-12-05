@@ -12,6 +12,7 @@ const dbconnect = require('./middleware/dbconnect');
 const auth = require('./middleware/auth');
 const get_username = require('./middleware/get_user');
 const get_checkedbooks = require('./middleware/get_checkedbooks');
+const get_banned = require('./middleware/get_banned');
 const ignore_favicon = require('./middleware/ignore_favicon');
 const session = require('express-session');
 //const { options } = require('./routes/router');
@@ -42,6 +43,7 @@ app.use(logger);
 app.use(auth);
 app.use('/user/', get_username);
 app.use('/user/', get_checkedbooks);
+app.use('/user/', get_banned);
 //display data
 
 //set static folder

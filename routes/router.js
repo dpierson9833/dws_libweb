@@ -4,7 +4,7 @@ const router = express.Router();
 
 // CONTROLLERS //
 var search_con = require('../controllers/search');
-const { getinstance_user, postinstance_availability, postinstance_login } = require('../controllers/user');
+const { getinstance_user, postinstance_availability, postinstance_login, postinstance_removeban, postinstance_createbanneduser } = require('../controllers/user');
 
 router.get('/', function(req, res, next) {
     var uid = req.session.user;
@@ -26,5 +26,9 @@ router.get('/login/', (req, res) => {
 router.post('/login/', postinstance_login);
 
 router.post('/availability', postinstance_availability);
+
+router.post('/unban', postinstance_removeban);
+
+router.post('/ban', postinstance_createbanneduser);
 
 module.exports = router;

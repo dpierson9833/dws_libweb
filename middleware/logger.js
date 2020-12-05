@@ -1,5 +1,8 @@
 const logger = (req, res, next) => {
-    console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
+
+    if(!req.originalUrl.includes('favicon.ico')){
+        console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
+    }
     next();
 };
 
